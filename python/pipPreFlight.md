@@ -6,3 +6,10 @@ pipPreFlight provides a number of checks that can be used in a deployment pipeli
 - check if the source directory contains a file named requirements.txt
 
 You can use pip to install all mentioned requirements from requirements.txt and it is a good practice to enure your source code distribution contains in all cases a requirements.txt file in the root of the source code directory.
+
+## running pipPreFlight
+pipPreFlight.sh is a bash script tested on Oracle Linux 7. Starting / calling pipPreFlight.sh can be done 
+
+```
+./pipPreFlight.sh -s /some/path/to/sourcecode
+```
