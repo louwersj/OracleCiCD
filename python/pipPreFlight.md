@@ -33,6 +33,9 @@ Passed 1554458935 : Check - pip command found at /usr/bin/pip
 Failed 1554458935 : pipPreFlight failed on one or more checks
 ```
 
+## making changes
+The below section provides some pointers to making changes to the logic to make this more integrated in your own specific pipeline.
+
 ### changing failed check handling
 In case you do want to handle failed checks in a different manner you can change the below mentioned function to include your own logic. Do note that the value of the preFlight variable is set to failed and that this is used in the logic for calling the preFligtFailed function or the preFlightPassed function. 
 ```
@@ -60,7 +63,7 @@ checkPassed () {
 }
 ```
 
-## Using none-zero exit code
+### Using none-zero exit code
 You can use the none-zero exit code to indicate that pipPreFlight failed and that your stage (or the entire pipeline) should be marked as failed. The function preFlightFailed is used to handle the situation in which one or more checks failed. In cases where you need to change the way this is handeld you can edit the preFlightFailed function. 
 ```
 #######################################
