@@ -33,5 +33,17 @@ Passed 1554458935 : Check - pip command found at /usr/bin/pip
 Failed 1554458935 : pipPreFlight failed on one or more checks
 ```
 
-## usign none-zero exit code
-You can use the none-zero exit code to indicate that pipPreFlight failed and that your stage (or the entire pipeline) should be marked as failed. 
+## Using none-zero exit code
+You can use the none-zero exit code to indicate that pipPreFlight failed and that your stage (or the entire pipeline) should be marked as failed. The function preFlightFailed is used to handle the situation in which one or more checks failed. In cases where you need to change the way this is handeld you can edit the preFlightFailed function. 
+```
+#######################################
+# function preFligtFailed is used to handle the situation where one or more
+# checks have failed. If one or more checks failed the entire pre-flight 
+# check has failed and we exit with a none-zeroe xit code to indicate that 
+# the pre-flight check has failed. 
+#######################################
+preFlightFailed () {
+  checkFailed "pipPreFlight failed on one or more checks"
+  exit 1
+}
+```
