@@ -14,7 +14,7 @@ pipPreFlight.sh is a bash script tested on Oracle Linux 7. Starting / calling pi
 ./pipPreFlight.sh -s /some/path/to/sourcecode
 ```
 
-## passed and failed checks
+## Passed and failed checks
 The checks performed by pipPreFlight are all reported as shown in the examples below.
 
 Example of all checks passed. In this situation the script will have an zero exit code. 
@@ -31,6 +31,33 @@ Failed 1554458935 : check - Source directory not found at /tmp/pipPreFlight/sour
 Failed 1554458935 : Check - Requirments file not found at /tmp/pipPreFlight/sourc/requirments.txt
 Passed 1554458935 : Check - pip command found at /usr/bin/pip
 Failed 1554458935 : pipPreFlight failed on one or more checks
+```
+
+### changing failed check handling
+In case you do want to handle failed checks in a different manner you can change the below mentioned function to include your own logic. Do note that the value of the preFlight variable is set to failed and that this is used in the logic for calling the preFligtFailed function or the preFlightPassed function. 
+```
+#######################################
+# function checkFailed is used to handle the situation where a check has
+# not been passed. We will use a function to handle this as this will make
+# it more easy to implement this logic in another pipeline system.  
+#######################################
+checkFailed () {
+  echo "Failed $(date +%s) : $1"
+  preFlight="failed"
+}
+```
+
+### changing passed check handling
+In case you do want to handle passed checks in a different manner you can change the below mentioned function to include your own logic:
+```
+#######################################
+# function checkPassed us used to handle thesituation where a check has passed
+# with succes. We will use a function to handle this as this will make it more
+# easy to implement this logic in another pipeline system.
+#######################################
+checkPassed () {
+  echo "Passed $(date +%s) : $1"
+}
 ```
 
 ## Using none-zero exit code
