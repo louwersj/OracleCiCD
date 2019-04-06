@@ -155,7 +155,7 @@ fi
 # check if requirments.txt is found in the source director. This will be required
 # for pip to install the required python packages
 requirmentsPresentPassed=$(requirmentsPresent $sourceDir)
-if [ $sourceDirPresentPassed == "true" ]; then
+if [ $requirmentsPresentPassed == "true" ]; then
   checkPassed "Check - Requirments file found at $sourceDir/requirments.txt"
 else
   checkFailed "Check - Requirments file not found at $sourceDir/requirments.txt"
